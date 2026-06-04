@@ -1,23 +1,24 @@
 import { Link } from 'react-router-dom'
 import { characters, categoryLabels, categoryColors } from '../data/characters'
 import { CharacterCard } from '../components/CharacterCard'
+import { PageBanner } from '../components/PageBanner'
 
 const featured = characters.filter(c =>
   ['mina-vaelith', 'lunaris-eldenar', 'dwena-drathmir'].includes(c.id)
 )
 
+const HERO_BG = '/screen/sylvaris1.png'
+
 export function Home() {
   return (
     <div className="docs-page">
 
-      <div className="page-header">
-        <div className="page-badge">Bienvenue</div>
-        <h1 className="page-title">Bibliothèque de Sylvaris</h1>
-        <p className="page-desc">
-          Archives de la cité elfique — personnages, histoire et chroniques du royaume de Sylvaris,
-          fondé au cœur des nouvelles terres par ceux qui refusèrent de reproduire les erreurs du passé.
-        </p>
-      </div>
+      <PageBanner
+        src={HERO_BG}
+        label="Bibliothèque de Sylvaris"
+        title="Sylvaris"
+        subtitle="Cité Elfique · KCRP"
+      />
 
       <div className="stat-row">
         <div className="stat-item">
@@ -38,9 +39,13 @@ export function Home() {
         </div>
       </div>
 
+      <p className="prose" style={{ marginTop: 8 }}>
+        Archives de Sylvaris — personnages, histoire et lore de la cité elfique sur KCRP.
+      </p>
+
       <h2 className="section-h2">Figures de Sylvaris</h2>
       <p className="prose">
-        Les personnages fondateurs de la cité, ceux qui ont façonné son histoire depuis les premiers jours.
+        Quelques personnages clés de la cité.
       </p>
 
       <div className="char-cards" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
@@ -55,7 +60,7 @@ export function Home() {
 
       <h2 className="section-h2">Factions & Rôles</h2>
       <p className="prose">
-        Sylvaris est structurée autour de plusieurs corps qui assurent sa gouvernance, sa protection et son développement.
+        Les différents rôles au sein de la cité.
       </p>
 
       <div className="intro-cards">
@@ -77,9 +82,7 @@ export function Home() {
 
       <h2 className="section-h2">Histoire</h2>
       <p className="prose">
-        Lorsque l'ancien monde s'effondra dans les flammes et les guerres, parmi les premiers
-        colons se trouvait un groupe refusant de reproduire les erreurs du passé. Ils rêvaient
-        d'une société plus raffinée, plus unie et plus proche de la nature…
+        Comment Sylvaris a été fondée, par qui, et pourquoi — les origines de la cité en texte complet.
       </p>
       <p>
         <Link to="/lore" style={{ fontSize: 13, fontFamily: 'var(--font-heading)', letterSpacing: '0.06em' }}>

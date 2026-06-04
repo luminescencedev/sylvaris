@@ -6,6 +6,7 @@ import { Characters } from './pages/Characters'
 import { CharacterDetail } from './pages/CharacterDetail'
 import { Lore } from './pages/Lore'
 import { Videos } from './pages/Videos'
+import { Gallery } from './pages/Gallery'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/personnages" element={<Characters />} />
                 <Route path="/personnages/:id" element={<CharacterDetail />} />
                 <Route path="/lore" element={<Lore />} />
+                <Route path="/galerie" element={<Gallery />} />
                 <Route path="/videos" element={<Videos />} />
               </Routes>
             </div>

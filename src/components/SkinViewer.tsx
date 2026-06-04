@@ -109,7 +109,7 @@ export function SkinViewer({ username, width = 160, height = 300, className, ani
       )}
       <canvas
         ref={canvasRef}
-        style={{ background: 'transparent', opacity: loaded ? 1 : 0, transition: 'opacity 0.4s' }}
+        style={{ background: 'transparent', opacity: loaded ? 1 : 0, transition: 'opacity 120ms ease' }}
       />
     </div>
   )

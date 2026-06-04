@@ -87,6 +87,12 @@ export function Sidebar() {
             Histoire & Lore
           </NavLink>
           <NavLink
+            to="/galerie"
+            className={({ isActive }) => `sidebar-item${isActive ? ' sidebar-item--active' : ''}`}
+          >
+            Galerie
+          </NavLink>
+          <NavLink
             to="/videos"
             className={({ isActive }) => `sidebar-item${isActive ? ' sidebar-item--active' : ''}`}
           >

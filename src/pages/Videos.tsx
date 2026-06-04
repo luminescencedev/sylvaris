@@ -1,3 +1,5 @@
+import { PageBanner } from '../components/PageBanner'
+
 interface Video {
   id: string
   youtubeId: string
@@ -18,9 +20,16 @@ export function Videos() {
         <div className="page-badge">Mémoire Vivante</div>
         <h1 className="page-title">Chroniques</h1>
         <p className="page-desc">
-          Vidéos et témoignages visuels de la vie à Sylvaris, ses constructions, ses événements et ses aventures.
+          Vidéos de Sylvaris — événements, constructions, sessions RP.
         </p>
       </div>
+
+      <PageBanner
+        src="/screen/sylvaris6.png"
+        label="Chroniques"
+        title="Vidéos"
+        size="sm"
+      />
 
       {videos.length === 0 ? (
         <div className="empty-state">

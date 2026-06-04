@@ -1,10 +1,9 @@
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { characters, categoryLabels, categoryColors } from '../data/characters'
 import { SkinViewer } from '../components/SkinViewer'
 
 export function CharacterDetail() {
   const { id } = useParams()
-  const navigate = useNavigate()
   const idx = characters.findIndex(c => c.id === id)
   const character = idx !== -1 ? characters[idx] : null
 
@@ -35,7 +34,10 @@ export function CharacterDetail() {
     <div className="docs-page">
 
       <div className="page-header">
-        <div className="page-badge" style={{ color, borderColor: `${color}44`, background: `${color}12` }}>
+        <div
+          className="page-badge"
+          style={{ color, borderColor: color + '50', background: color + '15' }}
+        >
           {categoryLabels[character.category]}
         </div>
         <h1 className="page-title">{character.firstName} {character.lastName}</h1>
@@ -103,16 +105,16 @@ export function CharacterDetail() {
 
       <nav className="page-nav" aria-label="Navigation personnages">
         {prev ? (
-          <button className="page-nav-link page-nav-link--prev" onClick={() => navigate(`/personnages/${prev.id}`)}>
+          <Link to={`/personnages/${prev.id}`} className="page-nav-link page-nav-link--prev">
             <span className="page-nav-dir">← Précédent</span>
             <span className="page-nav-label">{prev.firstName} {prev.lastName}</span>
-          </button>
+          </Link>
         ) : <span />}
         {next && (
-          <button className="page-nav-link page-nav-link--next" onClick={() => navigate(`/personnages/${next.id}`)}>
+          <Link to={`/personnages/${next.id}`} className="page-nav-link page-nav-link--next">
             <span className="page-nav-dir">Suivant →</span>
             <span className="page-nav-label">{next.firstName} {next.lastName}</span>
-          </button>
+          </Link>
         )}
       </nav>
 

@@ -1,4 +1,7 @@
 import { kcrpLore, sylvarisLore, presentationTemplate } from '../data/lore'
+import { PageBanner } from '../components/PageBanner'
+
+const LORE_BG = '/screen/sylvaris5.png'
 
 export function Lore() {
   return (
@@ -8,9 +11,16 @@ export function Lore() {
         <div className="page-badge">Archives</div>
         <h1 className="page-title">Histoire & Lore</h1>
         <p className="page-desc">
-          Les origines du monde, la fondation de Sylvaris et les textes fondateurs qui façonnent le destin de la cité elfique.
+          Le lore de KCRP et les textes fondateurs de Sylvaris.
         </p>
       </div>
+
+      <PageBanner
+        src={LORE_BG}
+        label="Lore"
+        title="Le Nouveau Monde"
+        size="sm"
+      />
 
       <h2 className="section-h2">{kcrpLore.title}</h2>
       <p style={{ fontSize: 11, fontFamily: 'var(--font-heading)', letterSpacing: '0.15em', color: 'var(--text-3)', textTransform: 'uppercase', marginBottom: 16 }}>
