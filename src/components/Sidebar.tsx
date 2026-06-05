@@ -99,7 +99,7 @@ export function Sidebar() {
             Chroniques
           </NavLink>
           <NavLink
-            to="/sons"
+            to="/musiques"
             className={({ isActive }) => `sidebar-item${isActive ? ' sidebar-item--active' : ''}`}
           >
             Musiques

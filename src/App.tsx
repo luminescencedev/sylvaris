@@ -8,6 +8,7 @@ import { Lore } from './pages/Lore'
 import { Videos } from './pages/Videos'
 import { Gallery } from './pages/Gallery'
 import { Musiques } from './pages/Musiques'
+import { MusiqueDetail } from './pages/MusiqueDetail'
 import { NotFound } from './pages/NotFound'
 import { useLenis } from './hooks/useLenis'
 
@@ -30,7 +31,8 @@ function App() {
                 <Route path="/lore" element={<Lore />} />
                 <Route path="/galerie" element={<Gallery />} />
                 <Route path="/videos" element={<Videos />} />
-                <Route path="/sons" element={<Musiques />} />
+                <Route path="/musiques" element={<Musiques />} />
+                <Route path="/musiques/:id" element={<MusiqueDetail />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>

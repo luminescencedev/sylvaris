@@ -1,16 +1,6 @@
+import { Link } from 'react-router-dom'
 import { PageBanner } from '../components/PageBanner'
-
-interface Musique {
-  id: string
-  youtubeId: string
-  title: string
-  artist?: string
-  description?: string
-}
-
-const musiques: Musique[] = [
-  { id: '1', youtubeId: 'CV6X8JJrifM', title: 'Garden', artist: 'Blockba' },
-]
+import { musiques } from '../data/musiques'
 
 export function Musiques() {
   return (
@@ -42,21 +32,25 @@ export function Musiques() {
       ) : (
         <div className="videos-grid">
           {musiques.map(m => (
-            <div key={m.id} className="video-card">
-              <div className="video-card-frame">
-                <iframe
-                  src={`https://www.youtube.com/embed/${m.youtubeId}`}
-                  title={m.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+            <Link key={m.id} to={`/musiques/${m.id}`} className="video-card musique-card">
+              <div className="musique-card-thumb">
+                <img
+                  src={`https://img.youtube.com/vi/${m.youtubeId}/hqdefault.jpg`}
+                  alt={m.title}
+                  className="musique-card-img"
                 />
+                <div className="musique-card-play">
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="20" fill="rgba(0,0,0,0.55)"/>
+                    <polygon points="16,13 30,20 16,27" fill="#e4dccb"/>
+                  </svg>
+                </div>
               </div>
               <div className="video-card-body">
                 <p className="video-card-title">{m.title}</p>
                 {m.artist && <p className="video-card-desc">{m.artist}</p>}
-                {m.description && <p className="video-card-desc">{m.description}</p>}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
