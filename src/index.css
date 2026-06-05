@@ -1262,9 +1262,12 @@ a:hover { color: var(--primary-hover); }
   animation: page-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.notfound-glyph {
-  margin-bottom: 28px;
-  opacity: 0.7;
+.notfound-logo {
+  height: 140px;
+  width: auto;
+  margin-bottom: 36px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 24px rgba(196,152,60,0.3));
 }
 
 .notfound-code {
