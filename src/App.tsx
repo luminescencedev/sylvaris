@@ -9,8 +9,11 @@ import { Videos } from './pages/Videos'
 import { Gallery } from './pages/Gallery'
 import { Musiques } from './pages/Musiques'
 import { NotFound } from './pages/NotFound'
+import { useLenis } from './hooks/useLenis'
 
 function App() {
+  useLenis()
+
   return (
     <SidebarProvider>
       <div className="docs-root">
