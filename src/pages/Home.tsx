@@ -4,7 +4,7 @@ import { CharacterCard } from '../components/CharacterCard'
 import { PageBanner } from '../components/PageBanner'
 
 const featured = characters.filter(c =>
-  ['mina-vaelith', 'lunaris-eldenar', 'dwena-drathmir'].includes(c.id)
+  ['mina-vaelith', 'trim-vaelor', 'lumi-aervyn'].includes(c.id)
 )
 
 const HERO_BG = '/screen/sylvaris1.png'
