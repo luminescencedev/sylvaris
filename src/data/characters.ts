@@ -192,10 +192,10 @@ export const characters: Character[] = [
     firstName: 'Kim',
     lastName: 'Cannard',
     age: 22,
-    origin: 'Humain',
+    origin: 'La marre du coin',
     originType: 'humain',
     role: 'Poissonnier · Jardinier · Canard Honorifique',
-    bio: "Après avoir rencontré l'elfe Mina en compagnie du président, Kim Cannard s'est posé énormément de questions. En se renseignant sur des pages sombres, il découvrit que les elfes sont un peuple bien plus proches de la nature et apparemment nettement plus malins que les humains. Persuadé de pouvoir en apprendre plus, Cannard décida d'effectuer un rite afin de devenir le premier Cannard à titre honorifique d'elfe.",
+    bio: "Après avoir rencontré l'elfe Mina en compagnie du président, Kim Cannard s'est posé énormément de questions. Quel est ce peuple, d'où vient-il, pourquoi a-t-elle fait preuve d'une gentillesse plus agréable que ne l'ont jamais été les humains avec lui ? En se renseignant sur des pages sombres, Cannard découvre que les elfes sont un peuple bien plus proche de la nature, qu'ils vivent de façon bien plus longue et qu'ils semblent nettement plus malins que les humains. Soudainement, un souvenir lointain revient : la légende du canard immortel. Persuadé de pouvoir en apprendre plus en se joignant aux elfes de Sylvaris, Cannard décide d'effectuer un rite avec l'aide des hauts placés afin de devenir le premier Cannard à titre honorifique d'elfe. Kim comprend que s'il ne devient pas le canard immortel, il ne sera qu'une brève étape dans l'histoire de Sylvaris. S'il y arrive, il pourra passer l'éternité de sa vie en compagnie de sa nouvelle famille.",
     goals: [
       "Contribuer à la prospérité d'un royaume puissant et reconnu",
       "Obtenir la mise en place d'une mare d'accueil pour les canards elfiques du futur",

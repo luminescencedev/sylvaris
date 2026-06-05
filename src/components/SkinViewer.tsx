@@ -70,20 +70,22 @@ export function SkinViewer({ username, width = 160, height = 300, className, ani
           width,
           height,
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'var(--bg-hover)',
-          border: '1px solid var(--border)',
-          borderRadius: '8px',
+          gap: 8,
           color: 'var(--text-3)',
-          fontSize: '12px',
-          fontFamily: 'var(--heading)',
-          letterSpacing: '0.1em',
-          textAlign: 'center',
-          padding: '12px',
+          opacity: 0.5,
         }}
       >
-        {username ? '⚠ Skin introuvable' : '— Inconnu —'}
+        <svg width="36" height="56" viewBox="0 0 36 56" fill="none" aria-hidden="true">
+          <circle cx="18" cy="10" r="9" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M4 32 C4 22 8 18 18 18 C28 18 32 22 32 32 L32 52 L4 52 Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+          <line x1="18" y1="30" x2="18" y2="48" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
+        </svg>
+        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+          {username ? 'Introuvable' : 'Inconnu'}
+        </span>
       </div>
     )
   }
