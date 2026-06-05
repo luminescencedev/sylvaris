@@ -1,1 +1,45 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#05100a"/><text y=".9em" font-size="90" x="5" fill="#c4983c">✦</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="22" fill="#09140b"/>
+
+  <!-- outer ring -->
+  <circle cx="50" cy="50" r="38" stroke="#c4983c" stroke-width="1.2" opacity="0.22" fill="none"/>
+
+  <!-- cardinal ticks -->
+  <line x1="50" y1="8" x2="50" y2="15" stroke="#c4983c" stroke-width="2.5" opacity="0.55" stroke-linecap="round"/>
+  <line x1="50" y1="85" x2="50" y2="92" stroke="#c4983c" stroke-width="2.5" opacity="0.55" stroke-linecap="round"/>
+  <line x1="8" y1="50" x2="15" y2="50" stroke="#c4983c" stroke-width="2.5" opacity="0.55" stroke-linecap="round"/>
+  <line x1="85" y1="50" x2="92" y2="50" stroke="#c4983c" stroke-width="2.5" opacity="0.55" stroke-linecap="round"/>
+
+  <!-- diagonal dots -->
+  <circle cx="23" cy="23" r="2.2" fill="#c4983c" opacity="0.28"/>
+  <circle cx="77" cy="23" r="2.2" fill="#c4983c" opacity="0.28"/>
+  <circle cx="23" cy="77" r="2.2" fill="#c4983c" opacity="0.28"/>
+  <circle cx="77" cy="77" r="2.2" fill="#c4983c" opacity="0.28"/>
+
+  <!-- main branches -->
+  <path d="M50 50 C 44 42, 33 35, 30 24" stroke="#c4983c" stroke-width="3" fill="none" opacity="0.82" stroke-linecap="round"/>
+  <path d="M50 50 C 56 42, 67 35, 70 24" stroke="#c4983c" stroke-width="3" fill="none" opacity="0.82" stroke-linecap="round"/>
+
+  <!-- crown vertical -->
+  <line x1="50" y1="24" x2="50" y2="16" stroke="#c4983c" stroke-width="3" opacity="0.82" stroke-linecap="round"/>
+
+  <!-- secondary branches -->
+  <path d="M41 37 C 37 33, 34 31, 32 28" stroke="#c4983c" stroke-width="1.8" fill="none" opacity="0.48" stroke-linecap="round"/>
+  <path d="M59 37 C 63 33, 66 31, 68 28" stroke="#c4983c" stroke-width="1.8" fill="none" opacity="0.48" stroke-linecap="round"/>
+
+  <!-- trunk -->
+  <line x1="50" y1="50" x2="50" y2="73" stroke="#c4983c" stroke-width="3" opacity="0.78" stroke-linecap="round"/>
+
+  <!-- roots -->
+  <path d="M50 73 C 46 76, 41 79, 38 83" stroke="#c4983c" stroke-width="2.2" fill="none" opacity="0.44" stroke-linecap="round"/>
+  <path d="M50 73 C 54 76, 59 79, 62 83" stroke="#c4983c" stroke-width="2.2" fill="none" opacity="0.44" stroke-linecap="round"/>
+
+  <!-- center diamond frame -->
+  <rect x="43.5" y="43.5" width="13" height="13" rx="1" transform="rotate(45 50 50)" fill="#09140b" stroke="#c4983c" stroke-width="2.2" opacity="0.88"/>
+
+  <!-- center gem -->
+  <circle cx="50" cy="50" r="3.2" fill="#c4983c" opacity="0.96"/>
+
+  <!-- leaf hint at crown -->
+  <ellipse cx="50" cy="16" rx="3.5" ry="4.5" fill="#c4983c" opacity="0.28"/>
+</svg>

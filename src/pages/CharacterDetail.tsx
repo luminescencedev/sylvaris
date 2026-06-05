@@ -33,53 +33,37 @@ export function CharacterDetail() {
   return (
     <div className="docs-page">
 
-      <div className="page-header">
-        <div
-          className="page-badge"
-          style={{ color, borderColor: color + '50', background: color + '15' }}
-        >
-          {categoryLabels[character.category]}
-        </div>
-        <h1 className="page-title">{character.firstName} {character.lastName}</h1>
-        <p className="page-desc">{character.role}</p>
-      </div>
-
       <div className="char-hero">
         <div className="char-hero-skin">
-          <SkinViewer username={character.minecraftUsername} width={160} height={300} animate />
+          <span className="char-hero-badge" style={{ color, borderColor: color + '40', background: color + '12' }}>
+            {categoryLabels[character.category]}
+          </span>
+          <SkinViewer username={character.minecraftUsername} width={260} height={500} animate />
         </div>
+
         <div className="char-hero-info">
-          <div className="props-wrap">
-            <table className="props-table">
-              <thead>
-                <tr>
-                  <th>Attribut</th>
-                  <th>Valeur</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span className="prop-key">Âge</span></td>
-                  <td className="prop-val">{character.age} ans</td>
-                </tr>
-                <tr>
-                  <td><span className="prop-key">Origine</span></td>
-                  <td className="prop-val">{character.origin}</td>
-                </tr>
-                <tr>
-                  <td><span className="prop-key">Allégeance</span></td>
-                  <td className="prop-val">{character.allegiance}</td>
-                </tr>
-                {character.minecraftUsername && (
-                  <tr>
-                    <td><span className="prop-key">Pseudo MC</span></td>
-                    <td className="prop-val" style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>
-                      {character.minecraftUsername}
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+          <h1 className="char-hero-name">{character.firstName} {character.lastName}</h1>
+          <p className="char-hero-role">{character.role}</p>
+
+          <div className="char-attrs" style={{ '--attr-color': color } as React.CSSProperties}>
+            <div className="char-attr">
+              <span className="char-attr-key">Âge</span>
+              <span className="char-attr-val">{character.age} ans</span>
+            </div>
+            <div className="char-attr">
+              <span className="char-attr-key">Origine</span>
+              <span className="char-attr-val">{character.origin}</span>
+            </div>
+            <div className="char-attr">
+              <span className="char-attr-key">Allégeance</span>
+              <span className="char-attr-val">{character.allegiance}</span>
+            </div>
+            {character.minecraftUsername && (
+              <div className="char-attr">
+                <span className="char-attr-key">Pseudo MC</span>
+                <span className="char-attr-val char-attr-mono">{character.minecraftUsername}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

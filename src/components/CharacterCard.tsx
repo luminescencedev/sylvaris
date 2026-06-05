@@ -17,7 +17,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
     >
       <div className="char-card-skin">
         <span className="char-card-badge">{categoryLabels[character.category]}</span>
-        <SkinViewer username={character.minecraftUsername} width={100} height={185} />
+        <SkinViewer username={character.minecraftUsername} width={150} height={270} />
       </div>
       <div className="char-card-sep" style={{ background: color }} />
       <div className="char-card-body">
