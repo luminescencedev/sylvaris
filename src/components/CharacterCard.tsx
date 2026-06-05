@@ -10,23 +10,21 @@ export function CharacterCard({ character }: CharacterCardProps) {
   const color = categoryColors[character.category]
 
   return (
-    <Link to={`/personnages/${character.id}`} className="char-card">
+    <Link
+      to={`/personnages/${character.id}`}
+      className="char-card"
+      style={{ '--char-color': color } as React.CSSProperties}
+    >
       <div className="char-card-skin">
-        <SkinViewer username={character.minecraftUsername} width={100} height={180} />
+        <span className="char-card-badge">{categoryLabels[character.category]}</span>
+        <SkinViewer username={character.minecraftUsername} width={100} height={185} />
       </div>
+      <div className="char-card-sep" style={{ background: color }} />
       <div className="char-card-body">
-        <span className="char-card-cat" style={{ color }}>
-          {categoryLabels[character.category]}
-        </span>
         <p className="char-card-name">{character.firstName} {character.lastName}</p>
         <p className="char-card-role">{character.role}</p>
-        <div className="char-card-meta">
-          <span>{character.age} ans</span>
-          <span className="char-card-dot">·</span>
-          <span>{character.origin}</span>
-        </div>
+        <p className="char-card-meta">{character.age} ans · {character.origin}</p>
       </div>
-      <div className="char-card-accent" style={{ background: color }} />
     </Link>
   )
 }

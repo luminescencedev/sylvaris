@@ -38,10 +38,6 @@ export function Videos() {
           <p>
             Les chroniques en vidéo seront déposées ici au fur et à mesure des aventures de Sylvaris.
           </p>
-          <p className="empty-hint">
-            Ajouter une vidéo → modifier le tableau <code>videos</code> dans{' '}
-            <code>src/pages/Videos.tsx</code>
-          </p>
         </div>
       ) : (
         <div className="videos-grid">

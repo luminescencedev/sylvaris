@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { characters, categoryLabels, type CharacterCategory } from '../data/characters'
+import { characters, categoryLabels, categoryColors, type CharacterCategory } from '../data/characters'
 
 // ── Sidebar context ────────────────────────────────────────────────
 
@@ -104,14 +104,20 @@ export function Sidebar() {
           <p className="sidebar-group-label">Personnages</p>
           {categories.map(cat => {
             const count = characters.filter(c => c.category === cat).length
+            const active = isCharCat(cat)
             return (
               <NavLink
                 key={cat}
                 to={`/personnages?cat=${cat}`}
-                className={`sidebar-item${isCharCat(cat) ? ' sidebar-item--active' : ''}`}
+                className={`sidebar-item${active ? ' sidebar-item--active' : ''}`}
               >
                 {categoryLabels[cat]}
-                <span className="sidebar-count">{count}</span>
+                <span
+                  className="sidebar-count"
+                  style={{ color: categoryColors[cat], borderColor: `${categoryColors[cat]}44` }}
+                >
+                  {count}
+                </span>
               </NavLink>
             )
           })}

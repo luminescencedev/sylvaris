@@ -26,31 +26,31 @@ export const screenshots: Screenshot[] = [
   {
     id: '5',
     src: '/screen/sylvaris5.png',
-    title: 'Le quai',
-    category: 'cite',
+    title: 'Les Veilleurs — vue de haut',
+    category: 'habitants',
   },
   {
     id: '2',
     src: '/screen/sylvaris2.png',
-    title: 'Rassemblement',
+    title: 'Rassemblement autour de Dame Mina',
     category: 'evenements',
   },
   {
     id: '3',
     src: '/screen/sylvaris3.png',
-    title: 'À la taverne',
-    category: 'habitants',
+    title: 'Réunion — Salle du Conseil',
+    category: 'evenements',
   },
   {
     id: '4',
     src: '/screen/sylvaris4.png',
-    title: 'Les Veilleurs',
+    title: 'Les Veilleurs — vue de bas',
     category: 'habitants',
   },
   {
     id: '6',
     src: '/screen/sylvaris6.png',
-    title: 'Nuit de pluie',
+    title: 'Nuit de pluie — Dame Mina',
     category: 'cite',
   },
 ]

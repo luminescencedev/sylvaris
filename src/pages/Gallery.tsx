@@ -15,9 +15,7 @@ export function Gallery() {
       <div className="page-header">
         <div className="page-badge">Visuels</div>
         <h1 className="page-title">Galerie</h1>
-        <p className="page-desc">
-          Screenshots de Sylvaris.
-        </p>
+        <p className="page-desc">Screenshots de Sylvaris.</p>
       </div>
 
       {screenshots.length > 0 && (
@@ -50,13 +48,7 @@ export function Gallery() {
         <div className="empty-state">
           <div className="empty-state-icon">🏛️</div>
           <h3>Galerie vide</h3>
-          <p>
-            Les screenshots de Sylvaris seront ajoutés ici au fur et à mesure.
-          </p>
-          <p className="empty-hint">
-            Mets tes screens dans <code>public/screenshots/</code> puis ajoute-les dans{' '}
-            <code>src/data/gallery.ts</code>
-          </p>
+          <p>Les screenshots seront ajoutés ici.</p>
         </div>
       ) : (
         <div className="gallery-grid">
@@ -66,13 +58,10 @@ export function Gallery() {
               className="gallery-card"
               onClick={() => setLightbox(s.src)}
             >
-              <div className="gallery-card-img">
-                <img src={s.src} alt={s.title} loading="lazy" />
-              </div>
-              <div className="gallery-card-body">
+              <img src={s.src} alt={s.title} loading="lazy" />
+              <div className="gallery-card-overlay">
                 <span className="gallery-card-cat">{categoryLabels[s.category]}</span>
                 <p className="gallery-card-title">{s.title}</p>
-                {s.description && <p className="gallery-card-desc">{s.description}</p>}
               </div>
             </div>
           ))}
