@@ -120,8 +120,8 @@ export const characters: Character[] = [
     age: 113,
     origin: 'Pur sang elfe, ancien monde',
     originType: 'pur-sang-elf',
-    role: 'Architecte de Sylvaris',
-    bio: "Fils de Daeren Aervyn, architecte de renom dont les œuvres ornaient les plus grandes cités de l'ancien monde, Lumi grandit dans l'ombre d'un père illustre. Effacé, studieux, il passa ses jeunes années à apprendre sans jamais chercher à briller. Lorsque les guerres réduisirent en cendres les œuvres de son père — et le père lui-même — il rejoignit l'expédition vers Sylvaris non pour porter un grand nom, mais parce que personne ne le connaissait là-bas.",
+    role: 'Architecte de Sylvaris · Troubadour de Dame Mina',
+    bio: "Fils de Daeren Aervyn, architecte de renom dont les œuvres ornaient les plus grandes cités de l'ancien monde, Lumi grandit dans l'ombre d'un père illustre. Effacé, studieux, il passa ses jeunes années à apprendre sans jamais chercher à briller. Lorsque les guerres réduisirent en cendres les œuvres de son père — et le père lui-même — il rejoignit l'expédition vers Sylvaris non pour porter un grand nom, mais parce que personne ne le connaissait là-bas. Il est également le troubadour attitré de Dame Mina, mettant sa voix et ses mots au service de la Première Gardienne.",
     goals: [
       "Bâtir Sylvaris de ses propres mains, édifice après édifice",
       "Devenir peu à peu indispensable à la cité, sans jamais le revendiquer",
