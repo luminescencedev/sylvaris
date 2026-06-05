@@ -80,6 +80,18 @@ export function Home() {
         })}
       </div>
 
+      <h2 className="section-h2">Étendard de Sylvaris</h2>
+      <div className="banner-showcase">
+        <img
+          src="/screen/sylvaris4.png"
+          alt="Bannière de Sylvaris"
+          className="banner-showcase-img"
+        />
+        <p className="banner-showcase-caption">
+          L'étendard de Sylvaris — symbole de la cité elfique, aux couleurs de la forêt ancienne.
+        </p>
+      </div>
+
       <h2 className="section-h2">Histoire</h2>
       <p className="prose">
         Comment Sylvaris a été fondée, par qui, et pourquoi — les origines de la cité en texte complet.
