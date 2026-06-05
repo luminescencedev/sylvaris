@@ -334,6 +334,25 @@ export const characters: Character[] = [
     allegiance: "Sylvaris",
     details: "Blockba porte toujours sa casquette.",
     category: 'citoyen',
+    minecraftUsername: 'Ofzebendo',
+  },
+  {
+    id: 'rowann-baunarumir',
+    firstName: 'Rowann',
+    lastName: 'Baunaraumîr',
+    age: 90,
+    origin: 'Ancien monde',
+    originType: 'pur-sang-elf',
+    role: 'Architecte · Ingénieur militaire',
+    bio: "Né dans l'Ancien Monde, Rowann se prit de passion pour l'architecture et l'ingénierie militaire. Il fit ses classes dans une grande cité humaine, qu'il côtoya longtemps sous couverture. La fascination et l'effroi que lui inspira l'attrait des humains pour la guerre — leurs vies éphémères les rendant diablement efficaces dans l'art de la mort — le poussa à en étudier les mécanismes sans jamais en embrasser la stratégie. Il développa ainsi une double expertise : la construction défensive et militaire d'un côté, et de l'autre une passion inattendue pour les thermes, ces bains publics humains intégrant des systèmes ingénieux de chauffage de l'eau. Arrivé sur le Nouveau Monde, il rejoignit la reconstruction de son peuple avec ses propres idées sur ce que Sylvaris devrait devenir.",
+    goals: [
+      "Construire un édifice assez majestueux pour entrer dans l'histoire — et lui donner son nom",
+      "Ouvrir des bains publics : un lieu neutre, sans armes ni fioritures",
+      "Faire évoluer Sylvaris sur le plan militaire et urbain, en intégrant ce que les humains font de mieux",
+    ],
+    allegiance: 'Sylvaris, et lui-même',
+    details: "Jeune de facto pour un elfe, Rowann a passé suffisamment de temps parmi les humains pour en comprendre les intentions et les concepts là où d'autres elfes ne verraient qu'étrangeté. Il n'est pas aussi honorable que la majorité de son peuple — il aime Sylvaris, mais ne s'oublie pas pour autant. Sa vision progressiste de la tradition elfique, dominée par la nature, le met parfois en décalage avec ses aînés.",
+    category: 'artisan',
   },
 ]
 
