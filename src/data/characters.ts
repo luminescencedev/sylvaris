@@ -102,7 +102,7 @@ export const characters: Character[] = [
     allegiance: 'Sylvaris',
     details: "Savaryth est une personne plutôt calme arborant de courts cheveux verts bouclés. Il reste néanmoins très impliqué dans son poste de conseiller politique. Reconnu en termes de politique, il est déjà un très bon stratège lorsqu'il s'agit de décisions politiques, malgré son jeune âge.",
     category: 'conseil',
-    minecraftUsername: 'KCNeway',
+    minecraftUsername: 'KC_Neway_',
   },
   {
     id: 'silar-valemor',
