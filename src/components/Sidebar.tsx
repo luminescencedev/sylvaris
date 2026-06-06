@@ -49,7 +49,7 @@ export function SidebarOverlay() {
 
 // ── Nav config ─────────────────────────────────────────────────────
 
-const categories: CharacterCategory[] = ['conseil', 'garde', 'artisan', 'erudit', 'citoyen']
+const categories: CharacterCategory[] = ['conseil', 'garde', 'artisan', 'erudit', 'diplomate', 'citoyen']
 
 // ── Sidebar ────────────────────────────────────────────────────────
 

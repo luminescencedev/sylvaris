@@ -1,4 +1,4 @@
-export type CharacterCategory = 'conseil' | 'garde' | 'artisan' | 'erudit' | 'citoyen'
+export type CharacterCategory = 'conseil' | 'garde' | 'artisan' | 'erudit' | 'diplomate' | 'citoyen'
 export type Origin = 'pur-sang-elf' | 'sang-mele' | 'humain' | 'autre'
 
 export interface CharacterRelation {
@@ -101,7 +101,7 @@ export const characters: Character[] = [
     ],
     allegiance: 'Sylvaris',
     details: "Savaryth est une personne plutôt calme arborant de courts cheveux verts bouclés. Il reste néanmoins très impliqué dans son poste de conseiller politique. Reconnu en termes de politique, il est déjà un très bon stratège lorsqu'il s'agit de décisions politiques, malgré son jeune âge.",
-    category: 'conseil',
+    category: 'diplomate',
     minecraftUsername: 'KC_Neway_',
   },
   {
@@ -371,7 +371,7 @@ export const characters: Character[] = [
     ],
     allegiance: "Sylvaris et son projet de renouveau",
     details: "Ruby porte des cornes fines et sombres qu'elle assume avec calme. Réservée et observatrice, derrière son apparence singulière se cache une volonté tranquille : bâtir quelque chose dont elle pourra être fière dans un monde qui lui a rarement offert sa place.",
-    category: 'artisan',
+    category: 'diplomate',
     minecraftUsername: 'ruluby',
   },
   {
@@ -419,6 +419,7 @@ export const categoryLabels: Record<CharacterCategory, string> = {
   garde: 'Veilleurs & Gardes',
   artisan: 'Artisans & Bâtisseurs',
   erudit: 'Érudits & Savants',
+  diplomate: 'Diplomates',
   citoyen: 'Citoyens',
 }
 
@@ -427,5 +428,6 @@ export const categoryColors: Record<CharacterCategory, string> = {
   garde: '#6b9eb8',
   artisan: '#8b9e6b',
   erudit: '#9b7acc',
+  diplomate: '#c47a5a',
   citoyen: '#8a9e8a',
 }
