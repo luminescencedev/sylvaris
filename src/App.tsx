@@ -11,9 +11,11 @@ import { Musiques } from './pages/Musiques'
 import { MusiqueDetail } from './pages/MusiqueDetail'
 import { NotFound } from './pages/NotFound'
 import { useLenis } from './hooks/useLenis'
+import { useScrollReveal } from './hooks/useScrollReveal'
 
 function App() {
   useLenis()
+  useScrollReveal()
 
   return (
     <SidebarProvider>

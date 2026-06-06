@@ -1,6 +1,16 @@
 export type CharacterCategory = 'conseil' | 'garde' | 'artisan' | 'erudit' | 'citoyen'
 export type Origin = 'pur-sang-elf' | 'sang-mele' | 'humain' | 'autre'
 
+export interface CharacterRelation {
+  id: string
+  label: string
+}
+
+export interface TimelineEntry {
+  era: string
+  event: string
+}
+
 export interface Character {
   id: string
   firstName: string
@@ -10,6 +20,9 @@ export interface Character {
   originType: Origin
   role: string
   bio: string
+  quote?: string
+  timeline?: TimelineEntry[]
+  relations?: CharacterRelation[]
   goals: string[]
   allegiance: string
   details: string
@@ -33,8 +46,21 @@ export const characters: Character[] = [
       "Étendre l'influence politique et économique de Sylvaris",
       "Préserver l'héritage de la Maison Vaelith et la mémoire du peuple elfe",
     ],
+    quote: "Le monde ancien s'est effondré sous le poids de ses extrêmes. Nous ne suivrons pas le même chemin.",
+    timeline: [
+      { era: 'Naissance', event: 'Née dans les dernières années de prospérité de l\'ancien monde, dernière héritière de la Maison Vaelith.' },
+      { era: 'Jeunesse', event: 'Placée sous la tutelle de Vaelor, érudit et gardien des traditions. Apprend à observer avant d\'agir.' },
+      { era: 'Les Grandes Guerres', event: 'Perd ses parents. Reçoit la Couronne d\'Elyndra — symbole de devoir, non de noblesse.' },
+      { era: 'La rencontre', event: 'Découvre Eldenar, blessé et laissé pour mort. Ordonne qu\'il soit soigné. Il ne l\'oubliera jamais.' },
+      { era: 'L\'expédition', event: 'Traverse les mers inconnues vers le nouveau monde, accompagnée de Vaelor et Eldenar.' },
+      { era: 'La fondation', event: 'Fonde Sylvaris. Refuse le titre de reine. Choisit celui de Première Gardienne.' },
+    ],
+    relations: [
+      { id: 'trim-vaelor', label: 'Mentor & Sage' },
+      { id: 'lunaris-eldenar', label: 'Chevalier Protecteur' },
+    ],
     allegiance: 'Sylvaris et son peuple',
-    details: "Connue pour ses longs cheveux blancs et ses yeux bleus, Mina possède une présence calme et élégante qui inspire autant le respect que la méfiance. Malgré son apparente sérénité, elle demeure une dirigeante particulièrement calculatrice lorsqu'il s'agit de protéger l'avenir de Sylvaris. Son mot d'ordre : « Le monde ancien s'est effondré sous le poids de ses extrêmes. Nous ne suivrons pas le même chemin. »",
+    details: "Connue pour ses longs cheveux blancs et ses yeux bleus, Mina possède une présence calme et élégante qui inspire autant le respect que la méfiance. Malgré son apparente sérénité, elle demeure une dirigeante particulièrement calculatrice lorsqu'il s'agit de protéger l'avenir de Sylvaris.",
     category: 'conseil',
     minecraftUsername: 'Myinana',
   },
@@ -93,8 +119,16 @@ export const characters: Character[] = [
       "Tisser des relations pacifiques avec les humains, fondées sur l'échange et le savoir",
       "Faire de Sylvaris une puissance reconnue grâce à l'alchimie et aux plantes",
     ],
+    quote: "Chaque potion est, d'une certaine façon, un pas vers la promesse qu'il lui a faite.",
+    timeline: [
+      { era: 'Enfance', event: 'Né d\'un père alchimiste et d\'une mère botaniste. Grandit entouré de plantes et de préparations.' },
+      { era: 'Le vœu', event: 'Sa petite sœur meurt d\'une maladie inconnue. Il se jure de trouver la panacée — le remède à tous les maux.' },
+      { era: 'Les Grandes Guerres', event: 'Perd ses parents, son royaume, et les ressources accumulées pour sa recherche. Survit seul.' },
+      { era: 'L\'expédition', event: 'Rassemble son courage et rejoint les expéditions vers le nouveau monde.' },
+      { era: 'Sylvaris', event: 'Trouve une famille parmi les elfes. Se promet d\'être utile à la cité et à sa Première Gardienne.' },
+    ],
     allegiance: 'Sylvaris et sa Première Gardienne',
-    details: "Silar refuse catégoriquement de tester ses concoctions sur des animaux — s'il faut un cobaye, il le fait sur lui-même. Il aime les plantes, les bêtes et l'histoire. Sa passion pour l'alchimie est indissociable du souvenir de sa sœur : chaque potion est, d'une certaine façon, un pas vers la promesse qu'il lui a faite.",
+    details: "Silar refuse catégoriquement de tester ses concoctions sur des animaux — s'il faut un cobaye, il le fait sur lui-même. Il aime les plantes, les bêtes et l'histoire. Sa passion pour l'alchimie est indissociable du souvenir de sa sœur.",
     category: 'erudit',
     minecraftUsername: 'Manu_ryuu',
   },
@@ -110,6 +144,10 @@ export const characters: Character[] = [
     goals: [
       "Protéger Sylvaris et la Première Gardienne",
       "Faire de Sylvaris une cité respectée à travers le monde",
+    ],
+    quote: "Elle m'a offert une seconde vie lorsque le monde m'avait abandonné.",
+    relations: [
+      { id: 'mina-vaelith', label: 'Protège · Loyauté absolue' },
     ],
     allegiance: 'Sylvaris',
     details: "Eldenar est un garçon aux cheveux noirs et aux yeux bleus. Il porte une cicatrice au visage, témoignage de son passé sur les champs de bataille. Malgré son calme apparent, il peut se mettre en colère lorsqu'on manque de respect envers lui ou ses proches.",
@@ -129,6 +167,17 @@ export const characters: Character[] = [
       "Bâtir Sylvaris de ses propres mains, édifice après édifice",
       "Devenir peu à peu indispensable à la cité, sans jamais le revendiquer",
       "Faire de Sylvaris son œuvre — discrètement, durablement, irréversiblement",
+    ],
+    quote: "Que Sylvaris, un jour, soit entièrement façonnée par ses mains.",
+    timeline: [
+      { era: 'Enfance', event: 'Grandit dans l\'atelier de Daeren Aervyn. Se lie d\'amitié avec Gus, qui traîne là sans s\'intéresser aux plans.' },
+      { era: 'Apprentissage', event: 'Apprend l\'architecture dans l\'ombre d\'un père illustre. Prend la trompette pour meubler les longues nuits de dessin.' },
+      { era: 'Les Grandes Guerres', event: 'Les guerres réduisent les œuvres de Daeren en cendres — et Daeren avec. Lumi plie les plans de son père dans une sacoche.' },
+      { era: 'L\'expédition', event: 'Rejoint le nouveau monde parce que personne ne le connaissait là-bas. Pas de comparaison possible.' },
+      { era: 'Sylvaris', event: 'Dame Mina lui confie le rôle de troubadour attitré. Il bâtit Sylvaris pierre après pierre, discrètement.' },
+    ],
+    relations: [
+      { id: 'gus-arh', label: 'Meilleur ami' },
     ],
     allegiance: 'Sylvaris et son peuple',
     details: "Lumi est un elfe humble et discret, toujours le premier à proposer son aide et le dernier à en tirer gloire. Pourtant, derrière ses yeux dorés posés sur chaque mur et chaque rue de la cité, se dessine une ambition patiente : que Sylvaris, un jour, soit entièrement façonnée par ses mains.",
@@ -259,8 +308,12 @@ export const characters: Character[] = [
       "Trouver à Sylvaris un endroit où rester pour de bon",
       "Comprendre ce que ça fait d'appartenir quelque part",
     ],
+    quote: "Que Lumi puisse bâtir sans que quelqu'un vienne tout détruire.",
+    relations: [
+      { id: 'lumi-aervyn', label: 'Meilleur ami · Raison d\'être' },
+    ],
     allegiance: "Lumi Aervyn, avant tout. Sylvaris par extension.",
-    details: "Gus se vend comme mercenaire indépendant à Sylvaris. Il ne revendique aucun lien avec Lumi en public, mais il est rarement loin quand ça compte. Sa lame est large, son style efficace. Il n'a pas appris l'élégance.",
+    details: "Gus se vend comme mercenaire indépendant à Sylvaris. Sa lame est large, son style efficace. Il n'a pas appris l'élégance — et il ne cherche pas à le faire.",
     category: 'garde',
     minecraftUsername: 'lilstick_',
   },

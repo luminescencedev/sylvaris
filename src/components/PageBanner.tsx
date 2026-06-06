@@ -1,3 +1,5 @@
+import { Particles } from './Particles'
+
 interface PageBannerProps {
   src?: string
   label?: string
@@ -14,6 +16,7 @@ export function PageBanner({ src, label, title, subtitle, size = 'default' }: Pa
         : <div className="page-banner-placeholder">✦</div>
       }
       <div className="page-banner-overlay" />
+      <Particles />
       <div className="page-banner-content">
         {label && <span className="page-banner-label">{label}</span>}
         <h2 className="page-banner-title">{title}</h2>

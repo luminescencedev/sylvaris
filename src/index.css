@@ -378,9 +378,8 @@ a:hover { color: var(--primary-hover); }
 }
 
 .page-header {
-  padding-bottom: 28px;
+  padding-bottom: 20px;
   margin-bottom: 8px;
-  border-bottom: 1px solid var(--border);
 }
 
 .page-badge {
@@ -421,27 +420,13 @@ a:hover { color: var(--primary-hover); }
 
 .section-h2 {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--text);
-  margin: 52px 0 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
+  margin: 16px 0 20px;
   scroll-margin-top: calc(var(--topbar-h) + 16px);
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* gold rune ornament — elven touch */
-.section-h2::before {
-  content: '✦';
-  font-size: 7px;
-  color: var(--primary);
-  opacity: 0.7;
-  flex-shrink: 0;
 }
 
 .section-h3 {
@@ -683,10 +668,10 @@ a:hover { color: var(--primary-hover); }
 }
 
 .feature-list li {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text-2);
-  line-height: 1.55;
-  padding-left: 20px;
+  line-height: 1.65;
+  padding-left: 22px;
   position: relative;
 }
 
@@ -868,6 +853,227 @@ a:hover { color: var(--primary-hover); }
   font-family: var(--font-mono);
   font-size: 14px;
   color: var(--text-2);
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Particles ───────────────────────────────────────────────────── */
+
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0;
+  animation: particle-float linear infinite;
+}
+
+@keyframes particle-float {
+  0%   { opacity: 0;   transform: translateY(0)     scale(0);   }
+  15%  { opacity: 0.7; transform: translateY(-12px)  scale(1);   }
+  80%  { opacity: 0.2; transform: translateY(-60px)  scale(0.6); }
+  100% { opacity: 0;   transform: translateY(-80px)  scale(0);   }
+}
+
+/* ── Elf divider ─────────────────────────────────────────────────── */
+
+.elf-divider {
+  margin: 40px 0 0;
+  width: 100%;
+}
+
+.elf-divider svg {
+  width: 100%;
+  height: 24px;
+}
+
+/* ── Drop cap ────────────────────────────────────────────────────── */
+
+.char-bio > p:first-child::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4em;
+  line-height: 0.78;
+  margin-right: 0.08em;
+  margin-top: 0.06em;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ── Pull quote ──────────────────────────────────────────────────── */
+
+.char-pullquote {
+  position: relative;
+  margin: 40px 0;
+  padding: 28px 36px 28px 48px;
+  border-left: 3px solid var(--quote-color, var(--primary));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--quote-color, var(--primary)) 6%, transparent), transparent);
+  border-radius: 0 8px 8px 0;
+}
+
+.char-pullquote-mark {
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--quote-color, var(--primary));
+  opacity: 0.2;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.char-pullquote p {
+  font-family: var(--font-lore);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Timeline ────────────────────────────────────────────────────── */
+
+.char-timeline {
+  position: relative;
+  padding-left: 28px;
+  margin: 24px 0;
+}
+
+.char-timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border) 0%, var(--border) 60%, transparent 100%);
+}
+
+.char-timeline-entry {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.char-timeline-entry:last-child {
+  margin-bottom: 0;
+}
+
+.char-timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--bg-subtle);
+}
+
+.char-timeline-dot-inner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.char-timeline-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.char-timeline-era {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.char-timeline-event {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Relations ───────────────────────────────────────────────────── */
+
+.char-relations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.char-relation-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px 12px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 150ms, background 150ms;
+  min-width: 200px;
+}
+
+.char-relation-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-hover);
+}
+
+.char-relation-skin {
+  width: 56px;
+  height: 100px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.char-relation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.char-relation-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.03em;
+}
+
+.char-relation-label {
+  font-size: 12px;
+  font-style: italic;
 }
 
 /* ── Page nav (prev / next) ──────────────────────────────────────── */

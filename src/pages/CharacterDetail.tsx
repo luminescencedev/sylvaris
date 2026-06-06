@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { characters, categoryLabels, categoryColors } from '../data/characters'
 import { SkinViewer } from '../components/SkinViewer'
+import { ElfDivider } from '../components/ElfDivider'
 
 export function CharacterDetail() {
   const { id } = useParams()
@@ -29,11 +30,15 @@ export function CharacterDetail() {
   }
 
   const color = categoryColors[character.category]
+  const relationChars = character.relations
+    ?.map(r => ({ rel: r, char: characters.find(c => c.id === r.id) }))
+    .filter(r => r.char != null) ?? []
 
   return (
     <div className="docs-page">
 
-      <div className="char-hero">
+      {/* Hero */}
+      <div className="char-hero reveal">
         <div className="char-hero-skin">
           <span className="char-hero-badge" style={{ color, borderColor: color + '40', background: color + '12' }}>
             {categoryLabels[character.category]}
@@ -68,34 +73,94 @@ export function CharacterDetail() {
         </div>
       </div>
 
-      <h2 className="section-h2">Histoire</h2>
-      <div className="prose">
-        {character.bio.split('\n\n').map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
+      {/* Timeline */}
+      {character.timeline && character.timeline.length > 0 && (
+        <div className="reveal">
+          <ElfDivider />
+          <h2 className="section-h2">Chronologie</h2>
+          <div className="char-timeline">
+            {character.timeline.map((entry, i) => (
+              <div key={i} className="char-timeline-entry">
+                <div className="char-timeline-dot" style={{ borderColor: color, background: color + '22' }}>
+                  <span className="char-timeline-dot-inner" style={{ background: color }} />
+                </div>
+                <div className="char-timeline-body">
+                  <span className="char-timeline-era" style={{ color }}>{entry.era}</span>
+                  <p className="char-timeline-event">{entry.event}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Bio */}
+      <div className="reveal">
+        <ElfDivider />
+        <h2 className="section-h2">Histoire</h2>
+        <div className="char-bio prose">
+          {character.bio.split('\n\n').map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
       </div>
 
+      {/* Pull quote */}
+      {character.quote && (
+        <blockquote className="char-pullquote reveal" style={{ '--quote-color': color } as React.CSSProperties}>
+          <span className="char-pullquote-mark">"</span>
+          <p>{character.quote}</p>
+        </blockquote>
+      )}
+
+      {/* Objectifs */}
       {character.goals.length > 0 && (
-        <>
+        <div className="reveal">
+          <ElfDivider />
           <h2 className="section-h2">Objectifs & Ambitions</h2>
           <ul className="feature-list">
             {character.goals.map((g, i) => <li key={i}>{g}</li>)}
           </ul>
-        </>
+        </div>
       )}
 
+      {/* Autres infos */}
       {character.details && (
-        <>
+        <div className="reveal">
+          <ElfDivider />
           <h2 className="section-h2">Autres informations</h2>
           <div className="prose">
             {character.details.split('\n\n').map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
-        </>
+        </div>
       )}
 
-      <nav className="page-nav" aria-label="Navigation personnages">
+      {/* Relations */}
+      {relationChars.length > 0 && (
+        <div className="reveal">
+          <ElfDivider />
+          <h2 className="section-h2">Relations</h2>
+          <div className="char-relations">
+            {relationChars.map(({ rel, char }) => (
+              <Link key={rel.id} to={`/personnages/${rel.id}`} className="char-relation-card">
+                <div className="char-relation-skin">
+                  <SkinViewer username={char!.minecraftUsername} width={56} height={100} />
+                </div>
+                <div className="char-relation-info">
+                  <span className="char-relation-name">{char!.firstName} {char!.lastName}</span>
+                  <span className="char-relation-label" style={{ color: categoryColors[char!.category] }}>
+                    {rel.label}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <nav className="page-nav reveal" aria-label="Navigation personnages">
         {prev ? (
           <Link to={`/personnages/${prev.id}`} className="page-nav-link page-nav-link--prev">
             <span className="page-nav-dir">← Précédent</span>
