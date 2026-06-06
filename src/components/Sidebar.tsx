@@ -140,6 +140,28 @@ export function Sidebar() {
           </NavLink>
         </div>
 
+        <div className="sidebar-group sidebar-group--bottom">
+          <p className="sidebar-group-label">Outils</p>
+          <NavLink
+            to="/chronologie"
+            className={({ isActive }) => `sidebar-item${isActive ? ' sidebar-item--active' : ''}`}
+          >
+            Chronologie
+          </NavLink>
+          <NavLink
+            to="/lexique"
+            className={({ isActive }) => `sidebar-item${isActive ? ' sidebar-item--active' : ''}`}
+          >
+            Lexique
+          </NavLink>
+          <NavLink
+            to="/relations"
+            className={({ isActive }) => `sidebar-item${isActive ? ' sidebar-item--active' : ''}`}
+          >
+            Graphe des relations
+          </NavLink>
+        </div>
+
       </nav>
     </aside>
   )

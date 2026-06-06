@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { Link2, Check } from 'lucide-react'
 import { characters, categoryLabels, categoryColors } from '../data/characters'
 import { SkinViewer } from '../components/SkinViewer'
 import { ElfDivider } from '../components/ElfDivider'
@@ -7,6 +9,13 @@ export function CharacterDetail() {
   const { id } = useParams()
   const idx = characters.findIndex(c => c.id === id)
   const character = idx !== -1 ? characters[idx] : null
+  const [copied, setCopied] = useState(false)
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(window.location.href)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   const prev = idx > 0 ? characters[idx - 1] : null
   const next = idx < characters.length - 1 ? characters[idx + 1] : null
@@ -47,7 +56,15 @@ export function CharacterDetail() {
         </div>
 
         <div className="char-hero-info">
-          <h1 className="char-hero-name">{character.firstName} {character.lastName}</h1>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+            <h1 className="char-hero-name">{character.firstName} {character.lastName}</h1>
+            <button
+              className={`copy-link-btn${copied ? ' copy-link-btn--copied' : ''}`}
+              onClick={copyLink}
+            >
+              {copied ? <><Check size={12} /> Copié</> : <><Link2 size={12} /> Lien</>}
+            </button>
+          </div>
           <p className="char-hero-role">{character.role}</p>
 
           <div className="char-attrs" style={{ '--attr-color': color } as React.CSSProperties}>

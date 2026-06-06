@@ -1,20 +1,57 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import { characters, type CharacterCategory, categoryLabels } from '../data/characters'
+import { characters, type CharacterCategory, type Origin, categoryLabels } from '../data/characters'
 import { CharacterCard } from '../components/CharacterCard'
 
 const allCats: CharacterCategory[] = ['conseil', 'garde', 'artisan', 'erudit', 'diplomate', 'citoyen']
+
+const originLabels: Record<Origin, string> = {
+  'pur-sang-elf': 'Elfe pur-sang',
+  'sang-mele': 'Sang-mêlé',
+  'humain': 'Humain',
+  'autre': 'Autre',
+}
+
+const allOrigins = (['pur-sang-elf', 'sang-mele', 'humain', 'autre'] as Origin[]).filter(
+  o => characters.some(c => c.originType === o)
+)
 
 export function Characters() {
   const [params] = useSearchParams()
   const navigate = useNavigate()
   const cat = params.get('cat') as CharacterCategory | null
   const [search, setSearch] = useState('')
+  const [originFilter, setOriginFilter] = useState<Origin | null>(null)
+  const [focusedIdx, setFocusedIdx] = useState(-1)
+  const focusedIdxRef = useRef(-1)
+  focusedIdxRef.current = focusedIdx
 
   const q = search.trim().toLowerCase()
   const filtered = characters
     .filter(c => !cat || c.category === cat)
-    .filter(c => !q || [c.firstName, c.lastName, c.role, c.origin].join(' ').toLowerCase().includes(q))
+    .filter(c => !originFilter || c.originType === originFilter)
+    .filter(c => !q || [c.firstName, c.lastName, c.role, c.origin, c.allegiance].join(' ').toLowerCase().includes(q))
+
+  useEffect(() => { setFocusedIdx(-1) }, [cat, originFilter, search])
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement
+      if (target.tagName === 'INPUT') return
+      if (e.key === 'j') {
+        e.preventDefault()
+        setFocusedIdx(i => Math.min(i + 1, filtered.length - 1))
+      } else if (e.key === 'k') {
+        e.preventDefault()
+        setFocusedIdx(i => Math.max(i - 1, 0))
+      } else if (e.key === 'Enter') {
+        const idx = focusedIdxRef.current
+        if (idx >= 0 && filtered[idx]) navigate(`/personnages/${filtered[idx].id}`)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [filtered, navigate])
 
   const allPages = [
     { href: '/personnages', label: 'Tous les personnages' },
@@ -74,9 +111,31 @@ export function Characters() {
         ))}
       </div>
 
+      {allOrigins.length > 1 && (
+        <div className="filters" style={{ marginTop: 4 }}>
+          <span className="filters-label">Origine</span>
+          {allOrigins.map(o => (
+            <button
+              key={o}
+              className={`filter-btn${originFilter === o ? ' filter-btn--active' : ''}`}
+              onClick={() => setOriginFilter(prev => prev === o ? null : o)}
+            >
+              {originLabels[o]}
+              <span className="filter-count">{characters.filter(c => c.originType === o).length}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {focusedIdx >= 0 && (
+        <p className="chars-keyboard-hint">
+          J/K pour naviguer · Entrée pour ouvrir · <strong>{filtered[focusedIdx]?.firstName} {filtered[focusedIdx]?.lastName}</strong>
+        </p>
+      )}
+
       <div className="char-cards">
-        {filtered.map(character => (
-          <CharacterCard key={character.id} character={character} />
+        {filtered.map((character, idx) => (
+          <CharacterCard key={character.id} character={character} focused={idx === focusedIdx} />
         ))}
       </div>
 

@@ -2,6 +2,12 @@ import { Link } from 'react-router-dom'
 import { kcrpLore, sylvarisLore, presentationTemplate } from '../data/lore'
 import { PageBanner } from '../components/PageBanner'
 
+const TOC = [
+  { id: 'kcrp', label: kcrpLore.title, num: 'I' },
+  { id: 'sylvaris', label: sylvarisLore.title, num: 'II' },
+  { id: 'rejoindre', label: 'Rejoindre Sylvaris', num: 'III' },
+]
+
 const LORE_BG = '/screen/sylvaris5.png'
 
 export function Lore() {
@@ -16,6 +22,20 @@ export function Lore() {
         </p>
       </div>
 
+      <nav className="lore-toc reveal">
+        <p className="lore-toc-label">Table des matières</p>
+        {TOC.map(item => (
+          <button
+            key={item.id}
+            className="lore-toc-item"
+            onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            <span className="lore-toc-num">{item.num}</span>
+            {item.label}
+          </button>
+        ))}
+      </nav>
+
       <PageBanner
         src={LORE_BG}
         label="Lore"
@@ -23,7 +43,7 @@ export function Lore() {
         size="sm"
       />
 
-      <h2 className="section-h2">{kcrpLore.title}</h2>
+      <h2 id="kcrp" className="section-h2">{kcrpLore.title}</h2>
       <p style={{ fontSize: 11, fontFamily: 'var(--font-heading)', letterSpacing: '0.15em', color: 'var(--text-3)', textTransform: 'uppercase', marginBottom: 16 }}>
         {kcrpLore.subtitle}
       </p>
@@ -37,7 +57,7 @@ export function Lore() {
         </div>
       </div>
 
-      <h2 className="section-h2">{sylvarisLore.title}</h2>
+      <h2 id="sylvaris" className="section-h2">{sylvarisLore.title}</h2>
       <p style={{ fontSize: 11, fontFamily: 'var(--font-heading)', letterSpacing: '0.15em', color: 'var(--text-3)', textTransform: 'uppercase', marginBottom: 16 }}>
         {sylvarisLore.subtitle}
       </p>
@@ -73,7 +93,7 @@ export function Lore() {
         </Link>
       </p>
 
-      <h2 className="section-h2">Rejoindre Sylvaris</h2>
+      <h2 id="rejoindre" className="section-h2">Rejoindre Sylvaris</h2>
       <p className="prose" style={{ marginBottom: 16 }}>
         Avant de fouler pleinement les terres de Sylvaris, tout habitant doit se présenter
         afin que les habitants puissent apprendre à le connaître.

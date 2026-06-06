@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Search } from 'lucide-react'
 import { MobileMenuButton } from './Sidebar'
 
-export function Topbar() {
+interface TopbarProps { onOpenSearch: () => void }
+
+export function Topbar({ onOpenSearch }: TopbarProps) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -31,6 +34,11 @@ export function Topbar() {
         </div>
 
         <div className="topbar-right">
+          <button className="topbar-search-btn" onClick={onOpenSearch} aria-label="Rechercher">
+            <Search size={15} className="topbar-search-icon" />
+            <span className="topbar-search-label">Rechercher</span>
+            <kbd className="topbar-search-kbd">Ctrl K</kbd>
+          </button>
           <span className="topbar-server">
             <span className="topbar-server-dot" />
             KCRP

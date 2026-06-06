@@ -4,15 +4,16 @@ import { SkinViewer } from './SkinViewer'
 
 interface CharacterCardProps {
   character: Character
+  focused?: boolean
 }
 
-export function CharacterCard({ character }: CharacterCardProps) {
+export function CharacterCard({ character, focused }: CharacterCardProps) {
   const color = categoryColors[character.category]
 
   return (
     <Link
       to={`/personnages/${character.id}`}
-      className="char-card"
+      className={`char-card${focused ? ' char-card--focused' : ''}`}
       style={{ '--char-color': color } as React.CSSProperties}
     >
       <div className="char-card-skin">
