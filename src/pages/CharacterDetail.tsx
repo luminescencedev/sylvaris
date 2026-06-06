@@ -69,7 +69,11 @@ export function CharacterDetail() {
       </div>
 
       <h2 className="section-h2">Histoire</h2>
-      <p className="prose">{character.bio}</p>
+      <div className="prose">
+        {character.bio.split('\n\n').map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+      </div>
 
       {character.goals.length > 0 && (
         <>
@@ -83,7 +87,11 @@ export function CharacterDetail() {
       {character.details && (
         <>
           <h2 className="section-h2">Autres informations</h2>
-          <p className="prose">{character.details}</p>
+          <div className="prose">
+            {character.details.split('\n\n').map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
         </>
       )}
 
