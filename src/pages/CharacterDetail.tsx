@@ -99,9 +99,12 @@ export function CharacterDetail() {
         <ElfDivider />
         <h2 className="section-h2">Histoire</h2>
         <div className="char-bio prose">
-          {character.bio.split('\n\n').map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {character.bio.split('\n\n').map((p, i) => {
+            if (p.startsWith('**') && p.endsWith('**')) {
+              return <h3 key={i} className="char-bio-heading">{p.slice(2, -2)}</h3>
+            }
+            return <p key={i}>{p}</p>
+          })}
         </div>
       </div>
 
