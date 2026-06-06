@@ -1,13 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { screenshots, type GalleryCategory, categoryLabels } from '../data/gallery'
 
 const allCats: GalleryCategory[] = ['cite', 'architecture', 'habitants', 'evenements']
 
 export function Gallery() {
   const [filter, setFilter] = useState<GalleryCategory | null>(null)
-  const [lightbox, setLightbox] = useState<string | null>(null)
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null)
 
   const filtered = filter ? screenshots.filter(s => s.category === filter) : screenshots
+
+  useEffect(() => {
+    if (lightboxIdx === null) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') setLightboxIdx(i => (i !== null && i > 0 ? i - 1 : i))
+      if (e.key === 'ArrowRight') setLightboxIdx(i => (i !== null && i < filtered.length - 1 ? i + 1 : i))
+      if (e.key === 'Escape') setLightboxIdx(null)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightboxIdx, filtered.length])
 
   return (
     <div className="docs-page">
@@ -52,11 +63,11 @@ export function Gallery() {
         </div>
       ) : (
         <div className="gallery-grid">
-          {filtered.map(s => (
+          {filtered.map((s, idx) => (
             <div
               key={s.id}
               className="gallery-card"
-              onClick={() => setLightbox(s.src)}
+              onClick={() => setLightboxIdx(idx)}
             >
               <img src={s.src} alt={s.title} loading="lazy" />
               <div className="gallery-card-overlay">
@@ -68,10 +79,26 @@ export function Gallery() {
         </div>
       )}
 
-      {lightbox && (
-        <div className="lightbox" onClick={() => setLightbox(null)}>
-          <button className="lightbox-close" onClick={() => setLightbox(null)}>✕</button>
-          <img src={lightbox} alt="" onClick={e => e.stopPropagation()} />
+      {lightboxIdx !== null && (
+        <div className="lightbox" onClick={() => setLightboxIdx(null)}>
+          <button className="lightbox-close" onClick={() => setLightboxIdx(null)}>✕</button>
+          <span className="lightbox-counter">{lightboxIdx + 1} / {filtered.length}</span>
+          <img
+            src={filtered[lightboxIdx].src}
+            alt={filtered[lightboxIdx].title}
+            onClick={e => e.stopPropagation()}
+          />
+          <div className="lightbox-nav" onClick={e => e.stopPropagation()}>
+            <button
+              className={`lightbox-nav-btn${lightboxIdx === 0 ? ' lightbox-nav-btn--hidden' : ''}`}
+              onClick={() => setLightboxIdx(i => (i !== null ? i - 1 : i))}
+            >←</button>
+            <button
+              className={`lightbox-nav-btn${lightboxIdx === filtered.length - 1 ? ' lightbox-nav-btn--hidden' : ''}`}
+              onClick={() => setLightboxIdx(i => (i !== null ? i + 1 : i))}
+            >→</button>
+          </div>
+          <p className="lightbox-caption">{filtered[lightboxIdx].title}</p>
         </div>
       )}
 

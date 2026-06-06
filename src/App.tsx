@@ -9,6 +9,7 @@ import { Videos } from './pages/Videos'
 import { Gallery } from './pages/Gallery'
 import { Musiques } from './pages/Musiques'
 import { MusiqueDetail } from './pages/MusiqueDetail'
+import { Chronologie } from './pages/Chronologie'
 import { NotFound } from './pages/NotFound'
 import { useLenis } from './hooks/useLenis'
 import { useScrollReveal } from './hooks/useScrollReveal'
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/videos" element={<Videos />} />
                 <Route path="/musiques" element={<Musiques />} />
                 <Route path="/musiques/:id" element={<MusiqueDetail />} />
+                <Route path="/chronologie" element={<Chronologie />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>

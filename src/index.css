@@ -85,6 +85,7 @@ a:hover { color: var(--primary-hover); }
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   border-bottom: 1px solid var(--border);
   z-index: 100;
+  transition: background 300ms ease, border-color 300ms ease;
 }
 
 .topbar::after {
@@ -97,6 +98,17 @@ a:hover { color: var(--primary-hover); }
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(196, 152, 60, 0.4), transparent);
   pointer-events: none;
+  transition: width 600ms ease, opacity 600ms ease;
+}
+
+.topbar--scrolled {
+  background: rgba(5, 10, 7, 0.98);
+  border-bottom-color: rgba(196, 152, 60, 0.18);
+}
+
+.topbar--scrolled::after {
+  width: 55%;
+  opacity: 0.6;
 }
 
 .topbar-inner {
@@ -571,6 +583,7 @@ a:hover { color: var(--primary-hover); }
 .char-card:hover {
   background: var(--bg-subtle);
   border-color: var(--border-hover);
+  box-shadow: 0 0 32px -4px color-mix(in srgb, var(--char-color, var(--primary)) 28%, transparent);
 }
 
 /* skin area — subtle category color tint via CSS variable */
@@ -772,6 +785,19 @@ a:hover { color: var(--primary-hover); }
   overflow: hidden;
 }
 
+.char-hero-skin::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: radial-gradient(ellipse 100% 80% at 50% 100%, var(--char-color, transparent) 0%, transparent 70%);
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .char-hero-badge {
   position: absolute;
   top: 14px;
@@ -860,12 +886,17 @@ a:hover { color: var(--primary-hover); }
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 500ms ease, transform 500ms ease;
+  filter: blur(4px);
+  transition:
+    opacity 600ms cubic-bezier(0.32, 0.72, 0, 1),
+    transform 600ms cubic-bezier(0.32, 0.72, 0, 1),
+    filter 600ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .reveal--visible {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
 }
 
 /* ── Particles ───────────────────────────────────────────────────── */
@@ -2058,6 +2089,203 @@ a:hover { color: var(--primary-hover); }
 .char-card:nth-child(15) { animation-delay: 0.56s; }
 .char-card:nth-child(16) { animation-delay: 0.60s; }
 .char-card:nth-child(17) { animation-delay: 0.64s; }
+
+/* ── Search bar ──────────────────────────────────────────────────── */
+
+.char-search-wrap {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.char-search {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px 0 40px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 150ms;
+}
+
+.char-search:focus {
+  border-color: var(--border-hover);
+}
+
+.char-search::placeholder {
+  color: var(--text-3);
+}
+
+.char-search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-3);
+  pointer-events: none;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ── Lightbox navigation ─────────────────────────────────────────── */
+
+.lightbox-nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.lightbox-nav-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  pointer-events: all;
+  font-size: 20px;
+  transition: background 120ms ease, color 120ms ease, transform 150ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.lightbox-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.lightbox-nav-btn--hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.lightbox-counter {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.4);
+  user-select: none;
+}
+
+/* ── Chronologie ─────────────────────────────────────────────────── */
+
+.chron-era {
+  margin-bottom: 56px;
+}
+
+.chron-era-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  opacity: 0.7;
+}
+
+.chron-timeline {
+  position: relative;
+  padding-left: 38px;
+}
+
+.chron-timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border) 0%, var(--border) 70%, transparent 100%);
+}
+
+.chron-entry {
+  position: relative;
+  margin-bottom: 38px;
+}
+
+.chron-entry:last-child {
+  margin-bottom: 0;
+}
+
+.chron-dot {
+  position: absolute;
+  left: -38px;
+  top: 5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--border-hover);
+  background: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chron-dot-inner {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.chron-entry-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.chron-entry-desc {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+
+.chron-entry-chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.chron-entry-char-tag {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 120ms;
+}
+
+.chron-entry-char-tag:hover {
+  opacity: 1;
+  color: var(--primary-hover);
+}
 
 /* respect reduced motion */
 @media (prefers-reduced-motion: reduce) {

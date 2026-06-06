@@ -38,7 +38,7 @@ export function CharacterDetail() {
     <div className="docs-page">
 
       {/* Hero */}
-      <div className="char-hero reveal">
+      <div className="char-hero reveal" style={{ '--char-color': color } as React.CSSProperties}>
         <div className="char-hero-skin">
           <span className="char-hero-badge" style={{ color, borderColor: color + '40', background: color + '12' }}>
             {categoryLabels[character.category]}

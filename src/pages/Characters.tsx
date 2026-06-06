@@ -1,15 +1,20 @@
+import { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { characters, type CharacterCategory, categoryLabels } from '../data/characters'
 import { CharacterCard } from '../components/CharacterCard'
 
-const allCats: CharacterCategory[] = ['conseil', 'garde', 'artisan', 'erudit', 'citoyen']
+const allCats: CharacterCategory[] = ['conseil', 'garde', 'artisan', 'erudit', 'diplomate', 'citoyen']
 
 export function Characters() {
   const [params] = useSearchParams()
   const navigate = useNavigate()
   const cat = params.get('cat') as CharacterCategory | null
+  const [search, setSearch] = useState('')
 
-  const filtered = cat ? characters.filter(c => c.category === cat) : characters
+  const q = search.trim().toLowerCase()
+  const filtered = characters
+    .filter(c => !cat || c.category === cat)
+    .filter(c => !q || [c.firstName, c.lastName, c.role, c.origin].join(' ').toLowerCase().includes(q))
 
   const allPages = [
     { href: '/personnages', label: 'Tous les personnages' },
@@ -36,6 +41,17 @@ export function Characters() {
             : "L'ensemble des habitants, gardiens et visiteurs de la cité elfique de Sylvaris."
           }
         </p>
+      </div>
+
+      <div className="char-search-wrap">
+        <span className="char-search-icon">⌕</span>
+        <input
+          className="char-search"
+          type="search"
+          placeholder="Rechercher un personnage…"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
       </div>
 
       <div className="filters">

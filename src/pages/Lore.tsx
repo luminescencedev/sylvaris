@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { kcrpLore, sylvarisLore, presentationTemplate } from '../data/lore'
 import { PageBanner } from '../components/PageBanner'
 
@@ -65,6 +66,12 @@ export function Lore() {
           ))}
         </div>
       </div>
+
+      <p style={{ marginTop: 8 }}>
+        <Link to="/chronologie" style={{ fontSize: 13, fontFamily: 'var(--font-heading)', letterSpacing: '0.06em' }}>
+          Voir la chronologie complète →
+        </Link>
+      </p>
 
       <h2 className="section-h2">Rejoindre Sylvaris</h2>
       <p className="prose" style={{ marginBottom: 16 }}>

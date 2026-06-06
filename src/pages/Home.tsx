@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { characters, categoryLabels, categoryColors } from '../data/characters'
 import { CharacterCard } from '../components/CharacterCard'
@@ -8,6 +9,38 @@ const featured = characters.filter(c =>
 )
 
 const HERO_BG = '/screen/sylvaris1.png'
+
+function AnimatedStat({ value, label }: { value: number; label: string }) {
+  const [display, setDisplay] = useState(0)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      observer.disconnect()
+      const duration = 1000
+      const start = performance.now()
+      const tick = (now: number) => {
+        const p = Math.min((now - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - p, 3)
+        setDisplay(Math.round(eased * value))
+        if (p < 1) requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    }, { threshold: 0.5 })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [value])
+
+  return (
+    <div className="stat-item" ref={ref}>
+      <span className="stat-num">{display}</span>
+      <span className="stat-label">{label}</span>
+    </div>
+  )
+}
 
 export function Home() {
   return (
@@ -20,23 +53,11 @@ export function Home() {
         subtitle="Cité Elfique · KCRP"
       />
 
-      <div className="stat-row">
-        <div className="stat-item">
-          <span className="stat-num">{characters.length}</span>
-          <span className="stat-label">Habitants</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-num">{characters.filter(c => c.originType === 'pur-sang-elf').length}</span>
-          <span className="stat-label">Elfes</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-num">{characters.filter(c => c.category === 'conseil').length}</span>
-          <span className="stat-label">Conseil</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-num">{characters.filter(c => c.category === 'garde').length}</span>
-          <span className="stat-label">Veilleurs</span>
-        </div>
+      <div className="stat-row reveal">
+        <AnimatedStat value={characters.length} label="Habitants" />
+        <AnimatedStat value={characters.filter(c => c.originType === 'pur-sang-elf').length} label="Elfes" />
+        <AnimatedStat value={characters.filter(c => c.category === 'conseil').length} label="Conseil" />
+        <AnimatedStat value={characters.filter(c => c.category === 'garde').length} label="Veilleurs" />
       </div>
 
       <p className="prose" style={{ marginTop: 8 }}>
@@ -64,11 +85,11 @@ export function Home() {
       </p>
 
       <div className="intro-cards">
-        {(['conseil', 'garde', 'artisan', 'erudit', 'citoyen'] as const).map(cat => {
+        {(['conseil', 'garde', 'artisan', 'erudit', 'diplomate', 'citoyen'] as const).map(cat => {
           const count = characters.filter(c => c.category === cat).length
           const color = categoryColors[cat]
           const icons: Record<string, string> = {
-            conseil: '👑', garde: '⚔️', artisan: '🏛️', erudit: '📜', citoyen: '🌿'
+            conseil: '👑', garde: '⚔️', artisan: '🏛️', erudit: '📜', diplomate: '🕊️', citoyen: '🌿'
           }
           return (
             <Link key={cat} to={`/personnages?cat=${cat}`} className="intro-card">
