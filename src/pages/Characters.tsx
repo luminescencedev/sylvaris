@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { useSearchParams, useNavigate } from 'react-router-dom'
-import { characters, type CharacterCategory, type Origin, categoryLabels } from '../data/characters'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
+import { LayoutGrid, List } from 'lucide-react'
+import { characters, type CharacterCategory, type Origin, categoryLabels, categoryColors } from '../data/characters'
 import { CharacterCard } from '../components/CharacterCard'
 
 const allCats: CharacterCategory[] = ['conseil', 'garde', 'artisan', 'erudit', 'diplomate', 'citoyen']
@@ -16,6 +17,8 @@ const allOrigins = (['pur-sang-elf', 'sang-mele', 'humain', 'autre'] as Origin[]
   o => characters.some(c => c.originType === o)
 )
 
+type ViewMode = 'grid' | 'list'
+
 export function Characters() {
   const [params] = useSearchParams()
   const navigate = useNavigate()
@@ -23,6 +26,7 @@ export function Characters() {
   const [search, setSearch] = useState('')
   const [originFilter, setOriginFilter] = useState<Origin | null>(null)
   const [focusedIdx, setFocusedIdx] = useState(-1)
+  const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const focusedIdxRef = useRef(-1)
   focusedIdxRef.current = focusedIdx
 
@@ -57,10 +61,7 @@ export function Characters() {
     { href: '/personnages', label: 'Tous les personnages' },
     ...allCats.map(c => ({ href: `/personnages?cat=${c}`, label: categoryLabels[c] }))
   ]
-
-  const currentIdx = cat
-    ? allPages.findIndex(p => p.href === `/personnages?cat=${cat}`)
-    : 0
+  const currentIdx = cat ? allPages.findIndex(p => p.href === `/personnages?cat=${cat}`) : 0
   const prev = currentIdx > 0 ? allPages[currentIdx - 1] : null
   const next = currentIdx < allPages.length - 1 ? allPages[currentIdx + 1] : null
 
@@ -69,9 +70,7 @@ export function Characters() {
 
       <div className="page-header">
         <div className="page-badge">Archive</div>
-        <h1 className="page-title">
-          {cat ? categoryLabels[cat] : 'Personnages'}
-        </h1>
+        <h1 className="page-title">{cat ? categoryLabels[cat] : 'Personnages'}</h1>
         <p className="page-desc">
           {cat
             ? `Les ${categoryLabels[cat].toLowerCase()} de Sylvaris.`
@@ -80,24 +79,39 @@ export function Characters() {
         </p>
       </div>
 
-      <div className="char-search-wrap">
-        <span className="char-search-icon">⌕</span>
-        <input
-          className="char-search"
-          type="search"
-          placeholder="Rechercher un personnage…"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
+      {/* Toolbar : search + view toggle */}
+      <div className="chars-toolbar">
+        <div className="char-search-wrap">
+          <span className="char-search-icon">⌕</span>
+          <input
+            className="char-search"
+            type="search"
+            placeholder="Rechercher un personnage…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        </div>
+        <div className="chars-view-toggle">
+          <button
+            className={`chars-view-btn${viewMode === 'grid' ? ' chars-view-btn--active' : ''}`}
+            onClick={() => setViewMode('grid')}
+            title="Vue grille"
+          >
+            <LayoutGrid size={15} />
+          </button>
+          <button
+            className={`chars-view-btn${viewMode === 'list' ? ' chars-view-btn--active' : ''}`}
+            onClick={() => setViewMode('list')}
+            title="Vue liste"
+          >
+            <List size={15} />
+          </button>
+        </div>
       </div>
 
       <div className="filters">
-        <button
-          className={`filter-btn${!cat ? ' filter-btn--active' : ''}`}
-          onClick={() => navigate('/personnages')}
-        >
-          Tous
-          <span className="filter-count">{characters.length}</span>
+        <button className={`filter-btn${!cat ? ' filter-btn--active' : ''}`} onClick={() => navigate('/personnages')}>
+          Tous<span className="filter-count">{characters.length}</span>
         </button>
         {allCats.map(c => (
           <button
@@ -133,11 +147,43 @@ export function Characters() {
         </p>
       )}
 
-      <div className="char-cards">
-        {filtered.map((character, idx) => (
-          <CharacterCard key={character.id} character={character} focused={idx === focusedIdx} />
-        ))}
-      </div>
+      {/* Grid view */}
+      {viewMode === 'grid' && (
+        <div className="char-cards">
+          {filtered.map((character, idx) => (
+            <CharacterCard key={character.id} character={character} focused={idx === focusedIdx} />
+          ))}
+        </div>
+      )}
+
+      {/* List view */}
+      {viewMode === 'list' && (
+        <div className="char-list">
+          {filtered.map((character, idx) => (
+            <Link
+              key={character.id}
+              to={`/personnages/${character.id}`}
+              className={`char-list-item${idx === focusedIdx ? ' char-list-item--focused' : ''}`}
+            >
+              {character.minecraftUsername && (
+                <img
+                  src={`https://mc-heads.net/avatar/${character.minecraftUsername}/32`}
+                  className="char-list-skin"
+                  alt=""
+                />
+              )}
+              <span className="char-list-name">{character.firstName} {character.lastName}</span>
+              <span className="char-list-role">{character.role}</span>
+              <span
+                className="char-list-cat"
+                style={{ color: categoryColors[character.category] }}
+              >
+                {categoryLabels[character.category]}
+              </span>
+            </Link>
+          ))}
+        </div>
+      )}
 
       <nav className="page-nav" aria-label="Navigation">
         {prev ? (
