@@ -72,6 +72,9 @@ export const characters: Character[] = [
     origin: 'Pur sang elfe',
     originType: 'pur-sang-elf',
     role: 'Membre du Haut Conseil · Botaniste',
+    relations: [
+      { id: 'mina-vaelith', label: 'Élève & Première Gardienne' },
+    ],
     bio: "Né dans les forêts flamboyantes de Sylvaris, Trim Vaelor développa très jeune une passion pour la nature et les créatures protégées par la Première Gardienne. Contrairement aux autres elfes attirés par la guerre ou la magie, il consacra sa vie à l'étude de la faune et de la flore, ce qui lui permit d'intégrer le Haut Conseil de Sylvaris.\n\nAujourd'hui, il œuvre à restaurer les terres abîmées et à protéger l'équilibre naturel du royaume. Calme et respecté, Trim reste cependant profondément sensible à la souffrance de toute forme de vie.",
     goals: [
       "Restaurer et repeupler les forêts de Sylvaris",
@@ -148,6 +151,7 @@ export const characters: Character[] = [
     quote: "Elle m'a offert une seconde vie lorsque le monde m'avait abandonné.",
     relations: [
       { id: 'mina-vaelith', label: 'Protège · Loyauté absolue' },
+      { id: 'lunaris-thoren', label: 'Frère' },
     ],
     allegiance: 'Sylvaris',
     details: "Eldenar est un garçon aux cheveux noirs et aux yeux bleus. Il porte une cicatrice au visage, témoignage de son passé sur les champs de bataille. Malgré son calme apparent, il peut se mettre en colère lorsqu'on manque de respect envers lui ou ses proches.",
@@ -211,6 +215,9 @@ export const characters: Character[] = [
     origin: 'Sang mêlé — humain (mère) et elfe (père)',
     originType: 'sang-mele',
     role: 'Érudit',
+    relations: [
+      { id: 'lunaris-eldenar', label: 'Frère' },
+    ],
     bio: "Lors d'une mission de mon père, celui-ci rencontra une humaine perdue dans la forêt, d'une beauté resplendissante, et tomba sous son charme instantanément. Celle-ci l'emmena vivre dans une civilisation humaine, période durant laquelle je suis né. Mon père réussit à se cacher de cette société un long moment, avant d'être repéré, traqué et brûlé vif. Ma mère fut emprisonnée après m'avoir caché.\n\nC'est alors que j'ai vécu seul dans cette société, me cachant des humains. Jusqu'à ce que mon frère Lunaris Eldenar me retrouve alors que je me perdais dans une forêt reculée, et m'accueille avec lui à Sylvaris.",
     goals: [
       "Partager le savoir qu'il connaît des elfes et des humains",
@@ -228,6 +235,9 @@ export const characters: Character[] = [
     origin: 'Descendant d\'une lignée de gardes, né à Sylvaris',
     originType: 'pur-sang-elf',
     role: 'Grand Veilleur',
+    relations: [
+      { id: 'mina-vaelith', label: 'Loyauté · Grand Veilleur' },
+    ],
     bio: "Dwena a appris à tenir une lame avant de savoir tracer les runes. Engagé jeune comme simple Veilleur, il s'est distingué non par la force brute, mais par son sang-froid : là où d'autres frappaient, il anticipait.\n\nLors d'une nuit où des pillards venus des colonies voisines tentèrent de franchir les jardins, c'est lui qui mena la défense et ramena chaque Veilleur vivant. Cet épisode lui valut la confiance de Dame Mina, qui l'éleva au rang de Grand Veilleur.\n\nAujourd'hui, il commande les chevaliers de la cité avec une autorité tranquille — il n'a pas besoin d'élever la voix pour qu'on l'écoute, son regard suffit.",
     goals: [
       "Faire des Veilleurs une garde irréprochable, redoutée des ennemis et respectée des citoyens",
@@ -283,6 +293,9 @@ export const characters: Character[] = [
     origin: 'Fille d\'une elfe et d\'un ogre',
     originType: 'sang-mele',
     role: 'Chamane',
+    relations: [
+      { id: 'mina-vaelith', label: 'Dévotion totale' },
+    ],
     bio: "Née d'un mélange vu comme « répugnant », Lily s'est vite mise à l'écart du reste du monde afin de se préserver. Solitaire depuis son plus jeune âge, elle décida de partir relativement tôt du foyer familial pour honorer son père qui n'a jamais pu avoir de fils, en allant se battre au front. Elle y resta de longues années avant de battre en retraite vers ses 80 ans, quand elle eut enfin la maturité de comprendre que son côté elfe n'était pas une faiblesse. Une demi-oreille lui avait été arrachée lors d'un combat contre un peuple qui avait pris en traître son village — cette douleur était plus intense que n'importe laquelle de ses cicatrices de guerre.\n\nSur le champ de bataille, Lily se battait avec son énorme marteau qui secouait des têtes et éclatait des crânes. Mais en apprenant l'herboristerie auprès d'une femme très sage durant ses longs voyages remplis de haine, de mort et de sang, elle comprit la vraie force qu'elle avait en elle de sa mère : le fait de pouvoir guérir.\n\nElle décida de rentrer chez elle pour apprendre auprès de sa génitrice pendant des années, pour enfin voler de ses propres ailes et trouver un endroit où elle aurait un réel intérêt.",
     goals: [
       "Nourrir tous ceux qui en ont le besoin",
