@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { getCachedSkin } from '../lib/skinCache'
 
 interface SkinViewerProps {
   username?: string
@@ -19,13 +20,11 @@ export function SkinViewer({ username, width = 160, height = 300, className, ani
     setLoaded(false)
     setError(false)
 
-    const skinUrl = username
-      ? `https://mc-heads.net/skin/${username}`
-      : 'https://mc-heads.net/skin/Steve'
-
     let cancelled = false
 
-    import('skinview3d').then((mod) => {
+    const target = username ?? 'Steve'
+
+    Promise.all([import('skinview3d'), getCachedSkin(target)]).then(([mod, skinUrl]) => {
       if (cancelled || !canvasRef.current) return
       try {
         const viewer = new mod.SkinViewer({
