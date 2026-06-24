@@ -15,6 +15,7 @@ import { MusiqueDetail } from './pages/MusiqueDetail'
 import { Chronologie } from './pages/Chronologie'
 import { Lexique } from './pages/Lexique'
 import { RelationsGraph } from './pages/RelationsGraph'
+import { MapPage } from './pages/MapPage'
 import { NotFound } from './pages/NotFound'
 import { useLenis } from './hooks/useLenis'
 import { useScrollReveal } from './hooks/useScrollReveal'
@@ -58,6 +59,7 @@ function App() {
                 <Route path="/chronologie" element={<Chronologie />} />
                 <Route path="/lexique" element={<Lexique />} />
                 <Route path="/relations" element={<RelationsGraph />} />
+                <Route path="/carte" element={<MapPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>

@@ -125,6 +125,17 @@ export function CharacterDetail() {
         </div>
       </div>
 
+      {/* Lore image */}
+      {character.loreImage && (
+        <div className="reveal" style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+          <img
+            src={character.loreImage}
+            alt={`Illustration de lore — ${character.firstName} ${character.lastName}`}
+            style={{ maxWidth: '100%', maxHeight: 480, borderRadius: 8, border: `1px solid ${color}30` }}
+          />
+        </div>
+      )}
+
       {/* Pull quote */}
       {character.quote && (
         <blockquote className="char-pullquote reveal" style={{ '--quote-color': color } as React.CSSProperties}>

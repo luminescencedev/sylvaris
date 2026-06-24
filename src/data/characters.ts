@@ -28,6 +28,7 @@ export interface Character {
   details: string
   category: CharacterCategory
   minecraftUsername?: string
+  loreImage?: string
 }
 
 export const characters: Character[] = [
@@ -406,6 +407,25 @@ export const characters: Character[] = [
     details: "Blockba porte toujours sa casquette.",
     category: 'citoyen',
     minecraftUsername: 'Ofzebendo',
+  },
+  {
+    id: 'varken-brumeval',
+    firstName: 'Varken',
+    lastName: 'Brumeval',
+    age: 19,
+    origin: 'Ancien monde',
+    originType: 'autre',
+    role: 'Veilleur · Buildeur',
+    bio: "Né sous un mauvais présage que ses parents choisirent d'inverser, Varken reçut à sa naissance un arc en bois noirci — issu d'un chêne noir séculaire — en guise de porte-bonheur.\n\nÀ cinq ans, des pillards attaquèrent son village. Ils brûlèrent tout, ne laissant derrière eux que des cendres et un enfant seul. Varken réussit à s'échapper, mais n'avait plus rien.\n\nIl grandit seul dans la forêt sombre. Avec le temps, même son apparence refléta cette vie sauvage : sa peau prit des teintes à moitié noire, à moitié grise, comme si la forêt l'avait marqué à jamais. Il apprit à survivre seul, développant ses propres techniques de combat, défiant les lois connues, forgeant sa légende dans l'ombre.\n\nAvant de mourir, sa famille lui avait parlé du royaume de Sylvaris — un endroit où leur peuple était le bienvenu. Cette parole ne le quitta jamais. Convaincu que rejoindre ce royaume l'aiderait à grandir et à évoluer, Varken entreprit un long voyage : il traversa des terres hostiles à pied et à la nage, gravit les plus hautes montagnes, affronta danger après danger.\n\nUn jour, au sommet d'une colline, il aperçut enfin la lumière de Sylvaris. Il la rejoignit et demanda à suivre leur chemin, à la vie à la mort.",
+    goals: [
+      "Évoluer au sein du royaume de Sylvaris",
+      "Devenir le plus grand guerrier",
+    ],
+    allegiance: "Sylvaris",
+    details: "Parle très peu aux inconnus, ne leur faisant pas confiance. Émet très peu de sentiments. D'une loyauté absolue envers ceux qui l'aident. Grand combattant.",
+    category: 'garde',
+    minecraftUsername: 'M1no360',
+    loreImage: '/screen/lore_mino.png',
   },
   {
     id: 'rowann-baunarumir',

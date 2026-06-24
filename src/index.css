@@ -2619,6 +2619,207 @@ a:hover { color: var(--primary-hover); }
   color: var(--text-2);
 }
 
+/* ── Map page ────────────────────────────────────────────────────── */
+
+.map-canvas-wrap {
+  position: relative;
+  height: calc(100svh - var(--topbar-h) - 160px);
+  min-height: 420px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 8px 0 0;
+}
+
+.map-leaflet {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-subtle);
+}
+
+/* Override Leaflet UI to match dark theme */
+.leaflet-container {
+  background: #080f0a;
+  font-family: var(--font-sans);
+}
+
+.leaflet-tile-pane { filter: brightness(0.9) saturate(0.85); }
+
+/* Popup */
+.map-popup-wrap .leaflet-popup-content-wrapper {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  padding: 0;
+}
+.map-popup-wrap .leaflet-popup-tip { background: var(--bg-subtle); }
+.map-popup-wrap .leaflet-popup-content { margin: 0; }
+
+.map-popup { padding: 12px 14px; }
+.map-popup-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  margin: 0 0 4px;
+}
+.map-popup-desc { font-size: 12px; color: var(--text-3); font-style: italic; margin: 0; }
+
+/* Tooltip */
+.map-tooltip {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text-2);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  padding: 3px 9px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Contrôles */
+.map-controls {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(5, 10, 7, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px 6px;
+  backdrop-filter: blur(8px);
+  z-index: 500;
+}
+
+.map-ctrl-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-3);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 100ms, color 100ms;
+}
+.map-ctrl-btn:hover { background: var(--bg-hover); color: var(--text-2); }
+.map-ctrl-btn--active { color: #4caf82; }
+
+.map-controls-sep { width: 1px; height: 18px; background: var(--border); margin: 0 2px; }
+
+.map-live-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #4caf82;
+  padding-left: 4px;
+  padding-right: 2px;
+}
+
+/* Légende */
+.map-legend {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: rgba(5, 10, 7, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  backdrop-filter: blur(8px);
+  z-index: 500;
+}
+
+.map-legend-item { display: flex; align-items: center; gap: 8px; }
+
+.map-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.map-legend-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* Placeholder */
+.map-placeholder {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  padding: 40px 24px;
+}
+
+.map-placeholder-inner {
+  text-align: center;
+  max-width: 480px;
+}
+
+.map-placeholder-icon {
+  color: var(--primary);
+  opacity: 0.4;
+  margin-bottom: 20px;
+}
+
+.map-placeholder-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-2);
+  letter-spacing: 0.06em;
+  margin: 0 0 10px;
+}
+
+.map-placeholder-desc {
+  font-size: 14px;
+  color: var(--text-3);
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.map-placeholder-checklist {
+  text-align: left;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.map-placeholder-check {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.map-placeholder-check code {
+  color: var(--primary);
+  background: rgba(196, 152, 60, 0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
 /* ── Lexique ─────────────────────────────────────────────────────── */
 
 .lexique-list {
